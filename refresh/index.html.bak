@@ -13,32 +13,31 @@
 
   <style>
     body {
-  margin: 0;
-  font-family: 'Quicksand', sans-serif;
-  background-color: #141415;
-  color: #F0F1EA;
-  min-height: 200vh; /* allow vertical scrolling */
-  position: relative;
-  overflow-x: hidden;
-}
-
+      margin: 0;
+      font-family: 'Quicksand', sans‑serif;
+      background-color: #141415;
+      color: #F0F1EA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
 
     body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('refresh_logo_white_1200px.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 85%;
-  opacity: 0.07;
-  z-index: 0;
-  pointer-events: none;
-  will-change: transform;
-  transition: transform 0.2s ease-out;
-}
-
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('refresh_logo_white_1200px.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 85%;
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+    }
 
     .card {
       position: relative;
@@ -157,7 +156,6 @@
   </style>
 </head>
 <body>
-<div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
   <div class="card">
 
     <!-- Animated Logo -->
@@ -173,30 +171,22 @@
     </div>
 
     <footer>&copy; 2025 refresh plm</footer>
-    
   </div>
-</div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const contactPanel = document.getElementById('contactPanel');
+        if (contactPanel) {
+          contactPanel.classList.add('show');
+        }
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
-      const contactPanel = document.getElementById('contactPanel');
-      if (contactPanel) {
-        contactPanel.classList.add('show');
-      }
+        document.querySelectorAll('.typing').forEach(el => {
+          el.style.borderRight = 'none';
+        });
+      }, 1100);
 
-      document.querySelectorAll('.typing').forEach(el => {
-        el.style.borderRight = 'none';
-      });
-    }, 1100);
-  });
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    document.body.style.backgroundPosition = `center calc(50% + ${scrollY * 0.1}px)`;
-  });
-</script>
-
+    });
+  </script>
 </body>
 </html>
