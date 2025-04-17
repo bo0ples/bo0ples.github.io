@@ -25,23 +25,19 @@
       overflow: hidden;
     }
 
-    /* Centered, half-size logo watermark with increased opacity */
-    
-body::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('refresh_logo_white_1200px.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50%; /* maintains the scale */
-  opacity: 0.07;
-  z-index: 0;
-  pointer-events: none;
-}
-
-
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('refresh_logo_white_1200px.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+    }
 
     .card {
       position: relative;
@@ -56,48 +52,40 @@ body::before {
       -webkit-backdrop-filter: blur(10px);
     }
 
-
     .header-logo {
       display: block;
-      height: 4.0rem;   
-      margin: 0 auto 1rem;       
+      height: 4rem;
+      margin: 0 auto 1rem;
       width: auto;
     }
 
-    .name {
-      font-size: 1rem;
-      font-weight: 500;
-      color: #F0F1EA;
-      margin: 0;
-      padding: 0;
-    }
-
-    .role {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #F0F1EA;
-      margin: 2px 0 1rem;
-      padding: 0;
-    }
-
-      @keyframes fadeSlideIn {
+    @keyframes fadeSlideIn {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
 
+    .typing {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideIn 1s ease-out forwards;
+    }
+
+    .typing.delay {
+      animation-delay: 0.9s;
+    }
+
     .contact-panel {
       transform: translateY(50px);
       opacity: 0;
-      transition: all 0.8s ease-out 0.5s; /* wait until typing finishes */
+      transition: all 0.8s ease-out 3s;
     }
 
     .contact-panel.show {
       transform: translateY(0);
       opacity: 1;
     }
-
 
     #contactPanel {
       opacity: 0;
@@ -109,7 +97,6 @@ body::before {
       opacity: 1;
       transform: translateY(0);
     }
-
 
     .contact-button {
       display: block;
@@ -129,7 +116,6 @@ body::before {
     .contact-button i {
       margin-right: 0.5rem;
     }
-
 
     .contact-button:hover {
       background: #F0F1EA;
@@ -171,46 +157,42 @@ body::before {
 </head>
 <body>
   <div class="card">
-    
-    <!-- Logo replaces both lines of text -->
-    <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
 
-<div class="contact-panel" id="contactPanel">
-  <a class="contact-button" href="tel:1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
-<a class="contact-button" href="mailto:aaron@refreshplm.ca"><i class="fas fa-envelope"></i> info@refreshplm.ca</a>
-<a class="contact-button" href="https://refreshplm.ca" target="_blank"><i class="fas fa-globe"></i> refreshplm.ca</a>
-<a class="vcard-button" href="refresh-contact.vcf" download>
-  <i class="fas fa-id-card"></i> Save Contact
-</a>
+    <!-- Animated Logo -->
+    <div class="typing">
+      <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
+    </div>
 
-</div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Slide in contact panel after typing animation
-    setTimeout(() => {
-      const contactPanel = document.getElementById('contactPanel');
-      if (contactPanel) {
-        contactPanel.classList.add('show');
-      }
-
-      // Remove blinking cursor after typing ends
-      document.querySelectorAll('.typing').forEach(el => {
-        el.style.borderRight = 'none';
-      });
-    }, 500); // matches your total animation duration
-
-    // Parallax background
-    const bg = document.body;
-    window.addEventListener('deviceorientation', (e) => {
-      const x = (e.gamma || 0) / 30;
-      const y = (e.beta || 0) / 30;
-      bg.style.backgroundPosition = `${50 + x * 10}% ${50 + y * 10}%`;
-    });
-  });
-</script>
-
+    <div class="contact-panel" id="contactPanel">
+      <a class="contact-button" href="tel:1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
+      <a class="contact-button" href="mailto:info@refreshplm.ca"><i class="fas fa-envelope"></i> info@refreshplm.ca</a>
+      <a class="contact-button" href="https://refreshplm.ca" target="_blank"><i class="fas fa-globe"></i> refreshplm.ca</a>
+      <a class="vcard-button" href="refresh-contact.vcf" download><i class="fas fa-id-card"></i> Save Contact</a>
+    </div>
 
     <footer>&copy; 2025 refresh plm</footer>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const contactPanel = document.getElementById('contactPanel');
+        if (contactPanel) {
+          contactPanel.classList.add('show');
+        }
+
+        document.querySelectorAll('.typing').forEach(el => {
+          el.style.borderRight = 'none';
+        });
+      }, 1100);
+
+      const bg = document.body;
+      window.addEventListener('deviceorientation', (e) => {
+        const x = (e.gamma || 0) / 30;
+        const y = (e.beta || 0) / 30;
+        bg.style.backgroundPosition = `${50 + x * 10}% ${50 + y * 10}%`;
+      });
+    });
+  </script>
 </body>
 </html>

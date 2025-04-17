@@ -104,8 +104,12 @@ body::before {
   animation: fadeSlideIn 1s ease-out forwards;
 }
 
-.typing.delay {
+.typing.delay1 {
   animation-delay: 0.9s;
+}
+
+.typing.delay2 {
+  animation-delay: 1.8s;
 }
 
     .contact-panel {
@@ -195,9 +199,11 @@ body::before {
     <div class="photo"></div>
 
     <!-- Logo replaces both lines of text -->
-    <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
-<p class="name typing">Aaron Lasovski</p>
-<p class="role typing delay">Director</p>
+    <div class="typing">
+      <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
+    </div>
+<p class="name typing delay1">Aaron Lasovski</p>
+<p class="role typing delay2">Director</p>
 
 <div class="contact-panel" id="contactPanel">
   <a class="contact-button" href="tel:1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
@@ -221,7 +227,7 @@ body::before {
       document.querySelectorAll('.typing').forEach(el => {
         el.style.borderRight = 'none';
       });
-    }, 2000); // matches your total animation duration
+    }, 2800); // matches your total animation duration
 
     // Parallax background
     const bg = document.body;
