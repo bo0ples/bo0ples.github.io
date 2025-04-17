@@ -5,62 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>refresh | Digital Business Card</title>
 
-  <!-- Quicksand font -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome stylesheet -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
-    body {
+    html, body {
       margin: 0;
-      font-family: 'Quicksand', sans‑serif;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
       background-color: #141415;
       color: #F0F1EA;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      position: relative;
-      overflow: hidden;
+      height: 100%;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-}
     }
 
-    /* Centered, half-size logo watermark with increased opacity */
-    
-body::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('refresh_logo_white_1200px.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50%; /* maintains the scale */
-  opacity: 0.07;
-  z-index: 0;
-  pointer-events: none;
-}
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('refresh_logo_white_1200px.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-  @media (max-width: 600px) {
+    .container {
+      min-height: 100vh;
+      padding: 3rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
     .card {
       width: 90%;
-      max-width: 300px;
-    }
-
-  .contact-button, .vcard-button {
-    width: 100%;
-  }
-}
-
-    .card {
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      z-index: 1;
-      width: 90%; max-width: 400px;
+      max-width: 400px;
       padding: 2rem;
       text-align: center;
       border-radius: 16px;
@@ -68,6 +50,13 @@ body::before {
       box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      z-index: 1;
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        width: 75%;
+      }
     }
 
     .photo {
@@ -77,11 +66,10 @@ body::before {
       margin: 0 auto 1rem;
     }
 
-
     .header-logo {
       display: block;
-      height: 4.0rem;   
-      margin: 0 auto 1rem;       
+      height: 3rem;
+      margin: 0 auto 1rem;
       width: auto;
     }
 
@@ -101,50 +89,33 @@ body::before {
       padding: 0;
     }
 
-     @keyframes typing {
-       from { width: 0; }
-       to { width: 100%; }
-     }
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-     @keyframes fadeSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.typing {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeSlideIn 1s ease-out forwards;
-}
+    .typing {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeSlideIn 0.8s ease-out forwards;
+    }
 
-.typing.delay {
-  animation-delay: 0.9s;
-}
+    .typing.delay {
+      animation-delay: 0.9s;
+    }
 
     .contact-panel {
-      transform: translateY(50px);
-      opacity: 0;
-      transition: all 0.8s ease-out 3s; /* wait until typing finishes */
-    }
-
-    .contact-panel.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-
-    #contactPanel {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity 1.6s ease, transform 0.8s ease;
     }
 
-    #contactPanel.show {
+    .contact-panel.show {
       opacity: 1;
       transform: translateY(0);
     }
-
 
     .contact-button {
       display: block;
@@ -155,7 +126,7 @@ body::before {
       border: 2px solid #F0F1EA;
       border-radius: 8px;
       font-weight: 500;
-      width: 80%;
+      width: 100%;
       transition: background 0.3s, color 0.3s;
       text-decoration: none;
       text-align: center;
@@ -165,14 +136,9 @@ body::before {
       margin-right: 0.5rem;
     }
 
-
     .contact-button:hover {
       background: #F0F1EA;
       color: #141415;
-    }
-
-    .floating-links {
-      margin-top: 2rem;
     }
 
     .vcard-button {
@@ -190,7 +156,7 @@ body::before {
     .vcard-button i {
       margin-right: 0.5rem;
     }
-
+    
     .vcard-button:hover {
       background: #F0F1EA;
       color: #141415;
@@ -204,6 +170,7 @@ body::before {
     }
   </style>
 </head>
+
 <body>
   <div class="card">
     <div class="photo"></div>
