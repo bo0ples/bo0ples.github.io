@@ -8,233 +8,85 @@
   <!-- Quicksand font -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome stylesheet -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
     body {
       margin: 0;
-      font-family: 'Quicksand', sans‑serif;
+      font-family: 'Quicksand', sans-serif;
       background-color: #141415;
       color: #F0F1EA;
       display: flex;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      gap: 2rem;
       position: relative;
       overflow: hidden;
+      flex-wrap: wrap;
     }
 
-    /* Centered, half-size logo watermark with increased opacity */
-    
-body::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('refresh_logo_white_1200px.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 50%; /* maintains the scale */
-  opacity: 0.07;
-  z-index: 0;
-  pointer-events: none;
-}
-
-
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('refresh_logo_white_1200px.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+    }
 
     .card {
       position: relative;
       z-index: 1;
-      width: 90%; max-width: 400px;
+      width: 90%;
+      max-width: 400px;
       padding: 2rem;
-      text-align: center;
       border-radius: 16px;
       background: rgba(27, 27, 28, 0.5);
       box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
     }
 
-    .photo {
-      width: 120px; height: 120px;
-      border-radius: 50%;
-      background: #333 url('https://via.placeholder.com/120') center/cover;
-      margin: 0 auto 1rem;
+    .card:hover {
+      transform: scale(1.03);
     }
 
-
-    .header-logo {
-      display: block;
-      height: 4.0rem;   
-      margin: 0 auto 1rem;       
-      width: auto;
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: opacity 0.3s ease;
     }
 
-    .name {
-      font-size: 1rem;
-      font-weight: 500;
-      color: #F0F1EA;
-      margin: 0;
-      padding: 0;
-    }
-
-    .role {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #F0F1EA;
-      margin: 2px 0 1rem;
-      padding: 0;
-    }
-
-     @keyframes typing {
-       from { width: 0; }
-       to { width: 100%; }
-     }
-
-     @keyframes fadeSlideIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.typing {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeSlideIn 1s ease-out forwards;
-}
-
-.typing.delay {
-  animation-delay: 0.9s;
-}
-
-    .contact-panel {
-      transform: translateY(50px);
-      opacity: 0;
-      transition: all 0.8s ease-out 3s; /* wait until typing finishes */
-    }
-
-    .contact-panel.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-
-    #contactPanel {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.6s ease, transform 0.8s ease;
-    }
-
-    #contactPanel.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-    .contact-button {
-      display: block;
-      margin: 0.5rem auto;
-      padding: 0.75rem 1.2rem;
-      background: transparent;
-      color: #F0F1EA;
-      border: 2px solid #F0F1EA;
-      border-radius: 8px;
-      font-weight: 500;
-      width: 80%;
-      transition: background 0.3s, color 0.3s;
+    a {
       text-decoration: none;
-      text-align: center;
-    }
-
-    .contact-button i {
-      margin-right: 0.5rem;
-    }
-
-
-    .contact-button:hover {
-      background: #F0F1EA;
-      color: #141415;
-    }
-
-    .floating-links {
-      margin-top: 2rem;
-    }
-
-    .vcard-button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.4rem 0.8rem;
-      font-size: 0.9rem;
-      color: #F0F1EA;
-      border: 2px solid #F0F1EA;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .vcard-button i {
-      margin-right: 0.5rem;
-    }
-
-    .vcard-button:hover {
-      background: #F0F1EA;
-      color: #141415;
-      text-decoration: none;
-    }
-
-    footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: #888;
+      color: inherit;
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="photo"></div>
 
-    <!-- Logo replaces both lines of text -->
-    <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
-<p class="name typing">Aaron Lasovski</p>
-<p class="role typing delay">Director</p>
+  <a href="/refresh/">
+    <div class="card">
+      <img src="front_500px.png" alt="Front of card">
+    </div>
+  </a>
 
-<div class="contact-panel" id="contactPanel">
-  <a class="contact-button" href="tel:1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
-<a class="contact-button" href="mailto:aaron@refreshplm.ca"><i class="fas fa-envelope"></i> aaron@refreshplm.ca</a>
-<a class="contact-button" href="https://refreshplm.ca" target="_blank"><i class="fas fa-globe"></i> refreshplm.ca</a>
-<a class="vcard-button" href="refresh-contact.vcf" download>
-  <i class="fas fa-id-card"></i> Save Contact
-</a>
+  <a href="/aaron/">
+    <div class="card">
+      <img src="back_500px.png" alt="Back of card">
+    </div>
+  </a>
 
-</div>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Slide in contact panel after typing animation
-    setTimeout(() => {
-      const contactPanel = document.getElementById('contactPanel');
-      if (contactPanel) {
-        contactPanel.classList.add('show');
-      }
-
-      // Remove blinking cursor after typing ends
-      document.querySelectorAll('.typing').forEach(el => {
-        el.style.borderRight = 'none';
-      });
-    }, 2000); // matches your total animation duration
-
-    // Parallax background
-    const bg = document.body;
-    window.addEventListener('deviceorientation', (e) => {
-      const x = (e.gamma || 0) / 30;
-      const y = (e.beta || 0) / 30;
-      bg.style.backgroundPosition = `${50 + x * 10}% ${50 + y * 10}%`;
-    });
-  });
-</script>
-
-
-    <footer>&copy; 2025 refresh plm</footer>
-  </div>
 </body>
 </html>
