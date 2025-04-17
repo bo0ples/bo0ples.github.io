@@ -23,6 +23,9 @@
       height: 100vh;
       position: relative;
       overflow: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+}
     }
 
     /* Centered, half-size logo watermark with increased opacity */
@@ -41,9 +44,20 @@ body::before {
   pointer-events: none;
 }
 
+  @media (max-width: 600px) {
+    .card {
+      width: 90%;
+      max-width: 300px;
+    }
 
+  .contact-button, .vcard-button {
+    width: 100%;
+  }
+}
 
     .card {
+      max-height: 90vh;
+      overflow-y: auto;
       position: relative;
       z-index: 1;
       width: 90%; max-width: 400px;
