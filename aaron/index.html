@@ -24,8 +24,6 @@
       position: relative;
       overflow: hidden;
     }
-
-    /* Centered, half-size logo watermark with increased opacity */
     
     body::before {
       content: "";
@@ -227,13 +225,6 @@
       });
     }, 2800); // matches your total animation duration
 
-    // Parallax background
-    const bg = document.body;
-    window.addEventListener('deviceorientation', (e) => {
-      const x = (e.gamma || 0) / 30;
-      const y = (e.beta || 0) / 30;
-      bg.style.backgroundPosition = `${50 + x * 10}% ${50 + y * 10}%`;
-    });
   });
 </script>
 
