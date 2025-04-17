@@ -1,8 +1,8 @@
 BEGIN:VCARD
 VERSION:3.0
-item1.EMAIL;TYPE=INTERNET:aaron@refreshplm.ca
+item1.EMAIL;TYPE=INTERNET:info@refreshplm.ca
 item1.X-ABLabel:
-item2.TEL:123 456 7890
+item2.TEL:1 123 456 7890
 item2.X-ABLabel:
 ORG:refresh parking lot maintenance
 item3.URL:refreshplm.ca
