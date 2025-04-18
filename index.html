@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="robots" content="noindex, nofollow" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>refresh | parking lot maintenance specialists</title>
@@ -84,23 +83,41 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: transform 0.3s ease, opacity 1.5s ease;
-      opacity: 0;
+      transition: transform 0.3s ease;
     }
 
     .card.hoverable:hover {
       transform: scale(1.07);
     }
 
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      transition: opacity 0.3s ease;
+    .business-card {
+      width: 500px;
+      height: 285px;
+      background-color: #141415;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card.fade-in {
-      opacity: 1;
+    .svg-logo,
+    .svg-contact {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none; /* Disable interaction with the images */
+    }
+
+    .svg-logo {
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .svg-contact {
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     a {
@@ -119,96 +136,94 @@
   <div class="container">
     <a href="./refresh/">
       <div class="card hoverable">
-        <img src="front_500px.png" alt="Front of card">
+        <div class="business-card">
+          <img src="logo.svg" alt="Logo" class="svg-logo" />
+        </div>
       </div>
     </a>
 
     <a href="./aaron/">
       <div class="card hoverable">
-        <img src="back_500px.png" alt="Back of card">
+        <div class="business-card">
+          <img src="contact.svg" alt="Contact Info" class="svg-contact" />
+        </div>
       </div>
     </a>
+
     <footer>&copy; 2025 refresh plm</footer>
   </div>
 
-<script>
-  // Apply the fade-in effect for all cards
-  document.querySelectorAll('.card').forEach((card, index) => {
-    setTimeout(() => {
-      card.classList.add('fade-in');
-    }, index * 500); // Staggered fade-in for each card
-  });
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      let pos = { x: 0, y: 0 };
+      let startX = 0;
+      let startY = 0;
+      let isDragging = false;
 
-  document.querySelectorAll('.card').forEach(card => {
-    let pos = { x: 0, y: 0 };
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-
-    const getXY = (e) => {
-      return {
-        x: e.touches ? e.touches[0].clientX : e.clientX,
-        y: e.touches ? e.touches[0].clientY : e.clientY
+      const getXY = (e) => {
+        return {
+          x: e.touches ? e.touches[0].clientX : e.clientX,
+          y: e.touches ? e.touches[0].clientY : e.clientY
+        };
       };
-    };
 
-    const onMove = (moveEvent) => {
-      if (!isDragging) return;
+      const onMove = (moveEvent) => {
+        if (!isDragging) return;
 
-      const { x, y } = getXY(moveEvent);
-      const dx = x - startX;
-      const dy = y - startY;
+        const { x, y } = getXY(moveEvent);
+        const dx = x - startX;
+        const dy = y - startY;
 
-      const limitedX = Math.max(Math.min(dx, 30), -30);
-      const limitedY = Math.max(Math.min(dy, 30), -30);
+        const limitedX = Math.max(Math.min(dx, 30), -30);
+        const limitedY = Math.max(Math.min(dy, 30), -30);
 
-      pos = { x: limitedX, y: limitedY };
-      card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.0)`;
-    };
+        pos = { x: limitedX, y: limitedY };
+        card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.0)`;
+      };
 
-    const onUp = () => {
-      if (!isDragging) return;
-      isDragging = false;
+      const onUp = () => {
+        if (!isDragging) return;
+        isDragging = false;
 
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerup', onUp);
-      window.removeEventListener('touchmove', onMove);
-      window.removeEventListener('touchend', onUp);
+        window.removeEventListener('pointermove', onMove);
+        window.removeEventListener('pointerup', onUp);
+        window.removeEventListener('touchmove', onMove);
+        window.removeEventListener('touchend', onUp);
 
-      card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-      card.style.transform = 'translate(0, 0) scale(1.0)';
-      card.classList.add('hoverable');
+        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+        card.style.transform = 'translate(0, 0) scale(1.0)';
+        card.classList.add('hoverable');
 
-      setTimeout(() => {
-        card.style.transition = '';
-      }, 400);
-    };
+        setTimeout(() => {
+          card.style.transition = '';
+        }, 400);
+      };
 
-    card.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      const { x, y } = getXY(e);
-      startX = x;
-      startY = y;
-      isDragging = true;
+      card.addEventListener('pointerdown', (e) => {
+        e.preventDefault();
+        const { x, y } = getXY(e);
+        startX = x;
+        startY = y;
+        isDragging = true;
 
-      card.classList.remove('hoverable');
+        card.classList.remove('hoverable');
 
-      window.addEventListener('pointermove', onMove);
-      window.addEventListener('pointerup', onUp);
-      window.addEventListener('touchmove', onMove, { passive: false });
-      window.addEventListener('touchend', onUp);
+        window.addEventListener('pointermove', onMove);
+        window.addEventListener('pointerup', onUp);
+        window.addEventListener('touchmove', onMove, { passive: false });
+        window.addEventListener('touchend', onUp);
+      });
+
+      card.addEventListener('pointercancel', () => {
+        isDragging = false;
+        card.classList.add('hoverable');
+        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+        card.style.transform = 'translate(0, 0) scale(1.0)';
+        setTimeout(() => {
+          card.style.transition = '';
+        }, 400);
+      });
     });
-
-    card.addEventListener('pointercancel', () => {
-      isDragging = false;
-      card.classList.add('hoverable');
-      card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-      card.style.transform = 'translate(0, 0) scale(1.0)';
-      setTimeout(() => {
-        card.style.transition = '';
-      }, 400);
-    });
-  });
-</script>
+  </script>
 </body>
 </html>
