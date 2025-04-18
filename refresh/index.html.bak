@@ -207,7 +207,7 @@
           const limitedY = Math.max(Math.min(dy, 30), -30);
 
           pos = { x: limitedX, y: limitedY };
-          card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.07)`;
+          card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.0)`;
         }
 
         function onUp() {
