@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>refresh | parking lot maintenance specialists</title>
 
-  <!-- Quicksand font -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -14,7 +13,7 @@
       -moz-text-size-adjust: 100%;
       text-size-adjust: 100%;
     }
-	
+
     body {
       margin: 0;
       font-family: 'Quicksand', sans-serif;
@@ -27,7 +26,7 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     body::before {
       content: "";
       position: absolute;
@@ -41,7 +40,7 @@
       z-index: 0;
       pointer-events: none;
     }
-    
+
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -50,18 +49,17 @@
       gap: 3rem;
       width: 100%;
       max-width: 100vw;
-      padding: 2rem 1rem; /* reduced side padding */
-      box-sizing: border-box; /* ensures padding doesn't add to width */
+      padding: 2rem 1rem;
+      box-sizing: border-box;
       z-index: 1;
     }
-    
+
     .container a {
       display: flex;
       justify-content: center;
       width: 100%;
     }
-    
-    
+
     .card {
       position: relative;
       z-index: 1;
@@ -80,18 +78,18 @@
       justify-content: center;
       transition: transform 0.3s ease;
     }
-    
-    .card:hover {
+
+    .card.hoverable:hover {
       transform: scale(1.07);
     }
-    
+
     .card img {
       width: 100%;
       height: auto;
       border-radius: 12px;
       transition: opacity 0.3s ease;
     }
-    
+
     a {
       text-decoration: none;
       color: inherit;
@@ -102,27 +100,25 @@
       font-size: 0.8rem;
       color: #888;
     }
-
-
   </style>
 </head>
 <body>
   <div class="container">
     <a href="./refresh/">
-      <div class="card">
+      <div class="card hoverable">
         <img src="front_500px.png" alt="Front of card">
       </div>
     </a>
 
     <a href="./aaron/">
-      <div class="card">
+      <div class="card hoverable">
         <img src="back_500px.png" alt="Back of card">
       </div>
     </a>
-	<footer>&copy; 2025 refresh plm</footer>
-   </div>
-   <script>
-      // Rubber-band drag cards with global event listeners
+    <footer>&copy; 2025 refresh plm</footer>
+  </div>
+
+  <script>
     document.querySelectorAll('.card').forEach(card => {
       let pos = { x: 0, y: 0 };
       let startX = 0;
@@ -134,14 +130,12 @@
         const dx = moveEvent.clientX - startX;
         const dy = moveEvent.clientY - startY;
 
-        // Limit movement
         const limitedX = Math.max(Math.min(dx, 30), -30);
         const limitedY = Math.max(Math.min(dy, 30), -30);
 
         pos = { x: limitedX, y: limitedY };
         card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.0)`;
       };
-								 
 
       const onUp = () => {
         if (!isDragging) return;
@@ -149,11 +143,12 @@
 
         window.removeEventListener('pointermove', onMove);
         window.removeEventListener('pointerup', onUp);
-														   
 
         card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
         card.style.transform = 'translate(0, 0) scale(1.0)';
-		 
+
+        // Restore hoverable effect after drag completes
+        card.classList.add('hoverable');
 
         setTimeout(() => {
           card.style.transition = '';
@@ -161,18 +156,20 @@
       };
 
       card.addEventListener('pointerdown', (e) => {
-        e.preventDefault(); // Prevent default behavior like scrolling
+        e.preventDefault();
         startX = e.clientX;
         startY = e.clientY;
         isDragging = true;
 
+        card.classList.remove('hoverable'); // Disable hover scaling during drag
+
         window.addEventListener('pointermove', onMove);
         window.addEventListener('pointerup', onUp);
       });
-		 
 
       card.addEventListener('pointercancel', () => {
         isDragging = false;
+        card.classList.add('hoverable');
         card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
         card.style.transform = 'translate(0, 0) scale(1.0)';
         setTimeout(() => {
@@ -180,10 +177,6 @@
         }, 400);
       });
     });
-  });
-</script>
-
+  </script>
 </body>
-
-
 </html>
