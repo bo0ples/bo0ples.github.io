@@ -137,7 +137,7 @@
   document.querySelectorAll('.card').forEach((card, index) => {
     setTimeout(() => {
       card.classList.add('fade-in');
-    }, index * 750); // Staggered fade-in for each card
+    }, 300 + index * 750); // Staggered fade-in for each card
   });
 
   document.querySelectorAll('.card').forEach(card => {
