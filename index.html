@@ -125,65 +125,77 @@
     <footer>&copy; 2025 refresh plm</footer>
   </div>
 
-  <script>
-    document.querySelectorAll('.card').forEach(card => {
-      let pos = { x: 0, y: 0 };
-      let startX = 0;
-      let startY = 0;
-      let isDragging = false;
+<script>
+  document.querySelectorAll('.card').forEach(card => {
+    let pos = { x: 0, y: 0 };
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
 
-      const onMove = (moveEvent) => {
-        if (!isDragging) return;
-        const dx = moveEvent.clientX - startX;
-        const dy = moveEvent.clientY - startY;
-
-        const limitedX = Math.max(Math.min(dx, 30), -30);
-        const limitedY = Math.max(Math.min(dy, 30), -30);
-
-        pos = { x: limitedX, y: limitedY };
-        card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.0)`;
+    const getXY = (e) => {
+      return {
+        x: e.touches ? e.touches[0].clientX : e.clientX,
+        y: e.touches ? e.touches[0].clientY : e.clientY
       };
+    };
 
-      const onUp = () => {
-        if (!isDragging) return;
-        isDragging = false;
+    const onMove = (moveEvent) => {
+      if (!isDragging) return;
 
-        window.removeEventListener('pointermove', onMove);
-        window.removeEventListener('pointerup', onUp);
+      const { x, y } = getXY(moveEvent);
+      const dx = x - startX;
+      const dy = y - startY;
 
-        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-        card.style.transform = 'translate(0, 0) scale(1.0)';
+      const limitedX = Math.max(Math.min(dx, 30), -30);
+      const limitedY = Math.max(Math.min(dy, 30), -30);
 
-        // Restore hoverable effect after drag completes
-        card.classList.add('hoverable');
+      pos = { x: limitedX, y: limitedY };
+      card.style.transform = `translate(${pos.x}px, ${pos.y}px) scale(1.0)`;
+    };
 
-        setTimeout(() => {
-          card.style.transition = '';
-        }, 400);
-      };
+    const onUp = () => {
+      if (!isDragging) return;
+      isDragging = false;
 
-      card.addEventListener('pointerdown', (e) => {
-        e.preventDefault();
-        startX = e.clientX;
-        startY = e.clientY;
-        isDragging = true;
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('touchmove', onMove);
+      window.removeEventListener('touchend', onUp);
 
-        card.classList.remove('hoverable'); // Disable hover scaling during drag
+      card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+      card.style.transform = 'translate(0, 0) scale(1.0)';
+      card.classList.add('hoverable');
 
-        window.addEventListener('pointermove', onMove);
-        window.addEventListener('pointerup', onUp);
-      });
+      setTimeout(() => {
+        card.style.transition = '';
+      }, 400);
+    };
 
-      card.addEventListener('pointercancel', () => {
-        isDragging = false;
-        card.classList.add('hoverable');
-        card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
-        card.style.transform = 'translate(0, 0) scale(1.0)';
-        setTimeout(() => {
-          card.style.transition = '';
-        }, 400);
-      });
+    card.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      const { x, y } = getXY(e);
+      startX = x;
+      startY = y;
+      isDragging = true;
+
+      card.classList.remove('hoverable');
+
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
+      window.addEventListener('touchmove', onMove, { passive: false });
+      window.addEventListener('touchend', onUp);
     });
-  </script>
+
+    card.addEventListener('pointercancel', () => {
+      isDragging = false;
+      card.classList.add('hoverable');
+      card.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+      card.style.transform = 'translate(0, 0) scale(1.0)';
+      setTimeout(() => {
+        card.style.transition = '';
+      }, 400);
+    });
+  });
+</script>
 </body>
 </html>
