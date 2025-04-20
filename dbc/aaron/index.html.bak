@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex, nofollow" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>refresh | Digital Business Card</title>
+  <title>refresh | Aaron Lasovski's Digital Business Card</title>
 
   <!-- Quicksand font -->
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -200,6 +202,11 @@
       color: #141415;
       text-decoration: none;
     }
+	
+	a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     footer {
       margin-top: 2rem;
@@ -217,7 +224,7 @@
       <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
     </div>
 <p class="name typing delay1">Aaron Lasovski</p>
-<p class="role typing delay2">Director</p>
+<p class="role typing delay2">Operations Director</p>
 
 <div class="contact-panel" id="contactPanel">
   <a class="contact-button" href="tel:1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
@@ -228,6 +235,8 @@
 </a>
 
 </div>
+    <footer><a href="https://refreshplm.ca">&copy; 2025 refresh plm</a></footer>
+  </div>
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     // Contact panel slide-in and typing border cleanup
@@ -304,7 +313,6 @@
 </script>
 
 
-    <footer>&copy; 2025 refresh plm</footer>
-  </div>
+
 </body>
 </html>

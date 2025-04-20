@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="robots" content="noindex, nofollow" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>refresh | Digital Business Card</title>
@@ -167,6 +169,11 @@
       color: #141415;
       text-decoration: none;
     }
+	
+	a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     footer {
       margin-top: 2rem;
@@ -190,7 +197,7 @@
       <a class="vcard-button" href="refresh-contact.vcf" download><i class="fas fa-id-card"></i> Save Contact</a>
     </div>
 
-    <footer>&copy; 2025 refresh plm</footer>
+    <footer><a href="https://refreshplm.ca">&copy; 2025 refresh plm</a></footer>
   </div>
 
 <script>
