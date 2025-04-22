@@ -132,7 +132,7 @@
         <img src="back_500px.png" alt="Back of card">
       </div>
     </a>
-    <footer><a href="https://refreshplm.ca">&copy; 2025 refresh plm</a></footer>
+    <footer><a href="&copy; 2025 refresh plm</footer>
   </div>
 
   <script>
