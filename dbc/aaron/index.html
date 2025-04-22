@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+  
+	:root {
+	  --delay-unit: 0.75s;
+	}
+	
   	* {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -76,6 +82,7 @@
     }
 
 
+
     .header-logo {
       display: block;
       height: 4.0rem;   
@@ -116,12 +123,16 @@
       animation: fadeSlideIn 1s ease-out forwards;
     }
     
+    .typing.delayLogo {
+      animation-delay: var(--delay-unit);
+    }
+	
     .typing.delay1 {
-      animation-delay: 0.9s;
+      animation-delay: calc(2 * var(--delay-unit));
     }
     
     .typing.delay2 {
-      animation-delay: 1.8s;
+      animation-delay: calc(3 * var(--delay-unit));
     }
 
     .contact-panel {
@@ -219,11 +230,12 @@
 </head>
 <body>
 	<div class="card">
+	<div class="typing">
 		<div class="photo"></div>
-
+	</div>
     <!-- Logo replaces both lines of text -->
-    <div class="typing">
-      <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
+    <div class="typing delayLogo">
+		<img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
     </div>
 	<p class="name typing delay1">Aaron Lasovski</p>
 		<p class="role typing delay2">Operations Director</p>
@@ -249,7 +261,7 @@
       document.querySelectorAll('.typing').forEach(el => {
         el.style.borderRight = 'none';
       });
-    }, 2800);
+    }, 3000);
 
     // Rubber-band drag cards with global event listeners
     document.querySelectorAll('.card').forEach(card => {
