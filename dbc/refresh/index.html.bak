@@ -183,22 +183,20 @@
   </style>
 </head>
 <body>
-  <div class="card">
+	<div class="card">
 
-    <!-- Animated Logo -->
-    <div class="typing">
-      <img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
-    </div>
-
-    <div class="contact-panel" id="contactPanel">
-      <a class="contact-button" href="tel:1234567890"><i class="fas fa-phone"></i> (123) 456-7890</a>
-      <a class="contact-button" href="mailto:info@refreshplm.ca"><i class="fas fa-envelope"></i> info@refreshplm.ca</a>
-      <a class="contact-button" href="https://refreshplm.ca" target="_blank"><i class="fas fa-globe"></i> refreshplm.ca</a>
-      <a class="vcard-button" href="refresh-contact.vcf" download><i class="fas fa-id-card"></i> Save Contact</a>
-    </div>
-
-    <footer><a href="https://refreshplm.ca">&copy; 2025 refresh plm</a></footer>
-  </div>
+		<!-- Animated Logo -->
+		<div class="typing">
+			<img src="refresh_logo_white_1200px.png" alt="refresh logo" class="header-logo" />
+		</div>
+			<div class="contact-panel" id="contactPanel">
+				<a class="contact-button" href="tel:4165557374"><i class="fas fa-phone"></i> (416) 555-RFSH</a>
+				<a class="contact-button" href="mailto:info@refreshplm.ca"><i class="fas fa-envelope"></i> info@refreshplm.ca</a>
+				<a class="contact-button" href="https://refreshplm.ca" target="_blank"><i class="fas fa-globe"></i> refreshplm.ca</a>
+				<a class="vcard-button" href="refresh-contact.vcf" download><i class="fas fa-id-card"></i> Save Contact</a>
+			</div>
+		<footer><a href="https://refreshplm.ca">&copy; 2025 refresh plm</a></footer>
+	</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
