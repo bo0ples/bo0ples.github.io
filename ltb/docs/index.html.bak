@@ -23,7 +23,7 @@
       left: 50%;
 	  width: 600px;       /* adjust size */
       height: 600px;      /* adjust size */
-      background: url('https://refreshplm.ca/refresh_logo_white_1200px.png') no-repeat center center;
+      background: url('https://refreshplm.ca/logo.png') no-repeat center center;
       background-size: contain;
       opacity: 0.08;      /* subtle watermark */
       transform: translate(-50%, -50%);
