@@ -5,21 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Document Index</title>
   <style>
+    /* Background logo styles */
     body {
       background-color: #121212;
       color: #e0e0e0;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       padding: 2rem;
       line-height: 1.6;
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
     }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+	  width: 600px;       /* adjust size */
+      height: 600px;      /* adjust size */
+      background: url('https://refreshplm.ca/logo.png') no-repeat center center;
+      background-size: contain;
+      opacity: 0.08;      /* subtle watermark */
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Content styles */
     h1 {
       margin-bottom: 1rem;
       font-weight: 600;
-      color: #f0f1ea; /* accent color */
+      color: #f7b500; /* accent color */
+      position: relative;
+      z-index: 1;
     }
     ul {
       list-style: none;
       padding-left: 0;
+      position: relative;
+      z-index: 1;
     }
     li {
       margin: 0.75rem 0;
@@ -29,10 +53,12 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
+      position: relative;
+      z-index: 1;
     }
     a:hover,
     a:focus {
-      color: #f0f1ea;
+      color: #f7b500;
       outline: none;
       text-decoration: underline;
     }
