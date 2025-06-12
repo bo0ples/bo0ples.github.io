@@ -15,7 +15,7 @@
     h1 {
       margin-bottom: 1rem;
       font-weight: 600;
-      color: #f0f1ea; /* accent color */
+      color: #f7b500; /* accent color */
     }
     ul {
       list-style: none;
@@ -32,7 +32,7 @@
     }
     a:hover,
     a:focus {
-      color: #f0f1ea;
+      color: #f7b500;
       outline: none;
       text-decoration: underline;
     }
